@@ -1,7 +1,3 @@
-Elbette, aşağıda projeniz için profesyonel bir `README.md` dosyası bulunuyor:
-
----
-
 # Crypto and Stock Market Tracker
 
 This project is a comprehensive web application for tracking real-time stock and cryptocurrency prices. Built with modern web technologies, it offers dynamic and responsive user interfaces using both list and card views. 
@@ -131,7 +127,3 @@ For any questions or inquiries, please reach out to:
 
 - **Email:** enescigdeem@gmail.com
 - **GitHub:** [enesscigdem](https://github.com/enesscigdem)
-
----
-
-Bu `README.md` dosyası, projenizin tüm önemli bilgilerini kapsamakta ve kullanıcıların projeyi kolayca indirip çalıştırmalarını sağlayacak detaylı talimatlar içermektedir. Lütfen uygun yerlerde kişisel bilgilerinizi ve doğru URL'leri kullanarak dosyayı güncellediğinizden emin olun.
