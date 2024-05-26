@@ -1,15 +1,39 @@
+Tabii ki, resimleri daha estetik bir şekilde yerleştirebiliriz. İkili gruplar halinde yan yana dizilmiş, köşeleri yuvarlatılmış ve uygun boyutlandırılmış resimleri içeren bir düzenleme yapabiliriz.
+
+Aşağıda, `README.md` dosyasının güncellenmiş hali bulunmaktadır:
+
+```markdown
 # Crypto and Stock Market Tracker
 
 This project is a comprehensive web application for tracking real-time stock and cryptocurrency prices. Built with modern web technologies, it offers dynamic and responsive user interfaces using both list and card views. 
 
-# Project Images
+## Project Images
 
-<img width="1470" alt="Ekran Resmi 2024-05-26 22 11 59" src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/3bf2dd77-dbc2-4cfb-95da-923dad729f12">
-<img width="1437" alt="Ekran Resmi 2024-05-26 22 13 03" src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/4c5f12f2-f6eb-4f14-b8a2-ee5d0a3418e4">
-<img width="1448" alt="Ekran Resmi 2024-05-26 22 13 34" src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/cc5401c2-ccb0-4054-8f75-f2bb70ba465e">
-<img width="1472" alt="Ekran Resmi 2024-05-26 22 14 01" src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/f918cb2c-a292-4e25-b8c5-eedf22f08923">
-<img width="1455" alt="Ekran Resmi 2024-05-26 22 14 08" src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/7d4c0a5b-33a1-482f-9c5b-561a7c10b90e">
-
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <img src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/3bf2dd77-dbc2-4cfb-95da-923dad729f12" alt="Image 1" style="border-radius: 15px; width: 700px;"/>
+      </td>
+      <td>
+        <img src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/4c5f12f2-f6eb-4f14-b8a2-ee5d0a3418e4" alt="Image 2" style="border-radius: 15px; width: 700px;"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/cc5401c2-ccb0-4054-8f75-f2bb70ba465e" alt="Image 3" style="border-radius: 15px; width: 700px;"/>
+      </td>
+      <td>
+        <img src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/f918cb2c-a292-4e25-b8c5-eedf22f08923" alt="Image 4" style="border-radius: 15px; width: 700px;"/>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <img src="https://github.com/enesscigdem/Crypto-and-Stock-Market-Tracker/assets/55703841/7d4c0a5b-33a1-482f-9c5b-561a7c10b90e" alt="Image 5" style="border-radius: 15px; width: 700px;"/>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ## Technologies Used
 
@@ -136,3 +160,4 @@ For any questions or inquiries, please reach out to:
 
 - **Email:** enescigdeem@gmail.com
 - **GitHub:** [enesscigdem](https://github.com/enesscigdem)
+```
