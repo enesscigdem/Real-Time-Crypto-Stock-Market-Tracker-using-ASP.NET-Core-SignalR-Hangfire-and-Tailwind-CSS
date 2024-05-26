@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - StockWeb</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <link href="css/site.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+<header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="https://media.istockphoto.com/id/961649530/vector/finance-graphic-bars-up-rising-arrow-vector-illustration-design.jpg?s=612x612&w=0&k=20&c=sXxosOL8SggL-XNdrm3QP05YFcmTlerS9wqkmB6O-TM=" alt="StockWeb Logo" class="h-16 w-16"/>
+            <h1 class="text-2xl font-bold text-gray-800">Stock IO</h1>
+            </div>
+        <nav class="space-x-4">
+            <a href="@Url.Action("Index", "Home")" class="text-gray-700 hover:text-gray-900">Stock Market</a>
+            <a href="@Url.Action("Index", "Crypto")" class="text-gray-700 hover:text-gray-900">Crypto Market</a>
+        </nav>
+    </div>
+</header>
+<div class="flex-grow container mx-auto mt-4">
+    @RenderBody()
+</div>
+<footer class="bg-white shadow mt-8">
+    <div class="container mx-auto px-4 py-6 text-center text-gray-600">
+        &copy; @DateTime.Now.Year - StockWeb - All Rights Reserved
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

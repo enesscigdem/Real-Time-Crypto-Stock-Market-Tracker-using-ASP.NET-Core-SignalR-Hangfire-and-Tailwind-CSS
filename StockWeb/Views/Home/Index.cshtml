@@ -1,0 +1,66 @@
+﻿@model List<StockWeb.Models.Stock>
+
+@{
+    ViewData["Title"] = "Stock Market";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - StockWeb</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold mb-4 text-center">Stock Market</h1>
+    <div class="flex justify-between items-center mb-4">
+        <div class="flex space-x-2">
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="5">5</button>
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="10">10</button>
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="25">25</button>
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="30">30</button>
+        </div>
+        <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer" id="toggleView">
+            <div id="toggleBackground" class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600">
+                <div id="toggleIcon" class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform transform peer-checked:translate-x-5"></div>
+            </div>
+            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300" id="toggleLabel">Card Görünüme Geç</span>
+        </label>
+    </div>
+    <div id="cardView" class="hidden">
+        <div id="cardContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        </div>
+    </div>
+    <div id="tableView">
+        <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead class="bg-gray-100">
+            <tr>
+                <th class="px-4 py-2 text-left text-gray-600">Stock</th>
+                <th class="px-4 py-2 text-left text-gray-600">Open Price</th>
+                <th class="px-4 py-2 text-left text-gray-600">Current Price</th>
+                <th class="px-4 py-2 text-left text-gray-600">Change</th>
+            </tr>
+            </thead>
+            <tbody id="stocksTable" class="divide-y divide-gray-200">
+                @foreach (var stock in Model)
+                {
+                    <tr class="hover:bg-gray-50" id="stock-@stock.Name">
+                        <td class="px-4 py-2">@stock.Name</td>
+                        <td class="px-4 py-2">@stock.OpenPrice.ToString("F2")</td>
+                        <td class="px-4 py-2 stock-price" data-stock="@stock.Name">@stock.Price.ToString("F2")</td>
+                        <td class="px-4 py-2">@((stock.Price - stock.OpenPrice).ToString("F2"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+<script src="js/stock.js"></script>
+<script>
+    window.stockData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+</script>
+</body>
+</html>

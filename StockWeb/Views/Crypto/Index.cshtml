@@ -1,0 +1,123 @@
+﻿@model List<StockWeb.Models.Crypto>
+
+@{
+    ViewData["Title"] = "Crypto Market";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - StockWeb</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+<div class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold mb-4 text-center">Crypto Market</h1>
+    <div class="flex justify-between items-center mb-4">
+        <div class="flex space-x-2">
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="5">5</button>
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="10">10</button>
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="25">25</button>
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="30">30</button>
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="50">50</button>
+            <button class="bg-gray-200 px-4 py-2 rounded list-option" data-list="100">100</button>
+        </div>
+        <label class="inline-flex items-center cursor-pointer">
+            <input type="checkbox" value="" class="sr-only peer" id="toggleView">
+            <div id="toggleBackground" class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:bg-blue-600">
+                <div id="toggleIcon" class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform transform peer-checked:translate-x-5"></div>
+            </div>
+            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300" id="toggleLabel">Card Görünümüne Geç</span>
+        </label>
+    </div>
+    <div id="cardView" class="hidden">
+        <div id="cardContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Cards will be dynamically added here -->
+        </div>
+    </div>
+    <div id="tableView">
+        <div class="scrollable-table bg-white shadow-md rounded-lg">
+            <table class="min-w-full">
+                <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Symbol</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Change</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Change %</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Market Cap</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Volume (24h)</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Circulating Supply</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last 7 Days</th>
+                </tr>
+                </thead>
+                <tbody id="cryptosTable" class="divide-y divide-gray-200">
+                    @foreach (var crypto in Model)
+                    {
+                        <tr class="hover:bg-gray-50 rounded-lg">
+                            <td class="px-6 py-4 whitespace-nowrap">@crypto.Name</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@crypto.Price.ToString("C")</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@crypto.Change</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@crypto.ChangePercent</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@crypto.MarketCap</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@crypto.Volume24h</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@crypto.CirculatingSupply</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <canvas id="chart-@crypto.Symbol"></canvas>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+<script src="js/crypto.js"></script>
+<script>
+    window.cryptoData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+
+    document.addEventListener("DOMContentLoaded", function () {
+        window.cryptoData.forEach(function (crypto) {
+            var ctx = document.getElementById(`chart-${crypto.Symbol}`).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [/* Example labels */ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [{
+                        label: 'Price',
+                        data: [/* Example data */ 10, 20, 30, 40, 50, 60, 70],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            display: false
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
