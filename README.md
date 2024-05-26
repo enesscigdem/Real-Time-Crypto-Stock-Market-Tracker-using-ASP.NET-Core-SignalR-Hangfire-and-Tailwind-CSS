@@ -1,8 +1,3 @@
-Tabii ki, resimleri daha estetik bir şekilde yerleştirebiliriz. İkili gruplar halinde yan yana dizilmiş, köşeleri yuvarlatılmış ve uygun boyutlandırılmış resimleri içeren bir düzenleme yapabiliriz.
-
-Aşağıda, `README.md` dosyasının güncellenmiş hali bulunmaktadır:
-
-```markdown
 # Crypto and Stock Market Tracker
 
 This project is a comprehensive web application for tracking real-time stock and cryptocurrency prices. Built with modern web technologies, it offers dynamic and responsive user interfaces using both list and card views. 
@@ -160,4 +155,3 @@ For any questions or inquiries, please reach out to:
 
 - **Email:** enescigdeem@gmail.com
 - **GitHub:** [enesscigdem](https://github.com/enesscigdem)
-```
