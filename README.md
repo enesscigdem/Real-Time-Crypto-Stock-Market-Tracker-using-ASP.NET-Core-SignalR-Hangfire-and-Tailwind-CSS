@@ -4,7 +4,7 @@ This project is a comprehensive web application for tracking real-time stock and
 
 ## Project Images
 
-<div align="center">
+<div align="center"> 
   <table>
     <tr>
       <td>
